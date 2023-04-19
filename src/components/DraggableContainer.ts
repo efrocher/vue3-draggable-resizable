@@ -71,6 +71,7 @@ export default defineComponent({
     }
     provide('identity', IDENTITY)
     provide('updatePosition', updatePosition)
+    provide('removePosition', removePosition)
     provide('getPositionStore', getPositionStore)
     provide('setMatchedLine', setMatchedLine)
     provide('disabled', toRef(props, 'disabled'))
