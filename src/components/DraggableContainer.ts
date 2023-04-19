@@ -3,6 +3,7 @@ import {
   PositionStore,
   Position,
   UpdatePosition,
+  RemovePosition,
   GetPositionStore,
   MatchedLine,
   SetMatchedLine
@@ -41,6 +42,9 @@ export default defineComponent({
     const positionStore = reactive<PositionStore>({})
     const updatePosition: UpdatePosition = (id: string, position: Position) => {
       positionStore[id] = position
+    }
+    const removePosition: RemovePosition = (id: string) => {
+      delete positionStore[id]
     }
     const getPositionStore: GetPositionStore = (excludeId?: string) => {
       const _positionStore = Object.assign({}, positionStore)

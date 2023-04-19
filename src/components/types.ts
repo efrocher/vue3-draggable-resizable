@@ -13,6 +13,7 @@ export interface PositionStore {
 }
 
 export type UpdatePosition = (id: string, position: Position) => void
+export type RemovePosition = (id: string) => void
 
 export type GetPositionStore = (excludeId?: string) => PositionStore
 
