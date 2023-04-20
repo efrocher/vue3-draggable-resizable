@@ -231,7 +231,7 @@ function initDraggableContainer(containerRef, containerProps, limitProps, dragga
         var deltaY = pageY - lstPageY;
         var newLeft = lstX + deltaX;
         var newTop = lstY + deltaY;
-        if (referenceLineMap !== null) {
+        if (referenceLineMap !== null && (containerProvider && !containerProvider.disabled.value)) {
             var widgetSelfLine = {
                 col: [newLeft, newLeft + w.value / 2, newLeft + w.value],
                 row: [newTop, newTop + h.value / 2, newTop + h.value]
@@ -298,7 +298,7 @@ function initDraggableContainer(containerRef, containerProps, limitProps, dragga
         // document.documentElement.addEventListener('mouseup', handleUp)
         utils_1.addEvent(documentElement, MOVE_HANDLES, handleDrag);
         utils_1.addEvent(documentElement, UP_HANDLES, handleUp);
-        if (containerProvider && !containerProvider.disabled.value) {
+        if (containerProvider) {
             referenceLineMap = utils_1.getReferenceLineMap(containerProvider, parentSize, id);
         }
     };
