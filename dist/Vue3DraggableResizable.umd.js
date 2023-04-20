@@ -1500,12 +1500,15 @@ function initDraggableContainer(containerRef, containerProps, limitProps, dragga
     const deltaY = pageY - lstPageY;
     let newLeft = lstX + deltaX;
     let newTop = lstY + deltaY;
-    if (referenceLineMap !== null && containerProvider && !containerProvider.disabled.value) {
+    if (referenceLineMap !== null) {
       const widgetSelfLine = {
         col: [newLeft, newLeft + w.value / 2, newLeft + w.value],
         row: [newTop, newTop + h.value / 2, newTop + h.value]
       };
-      const matchedLine = {
+      const matchedLine = containerProvider.disabled.value ? {
+        row: [],
+        col: []
+      } : {
         row: widgetSelfLine.row.map((i, index) => {
           let match = null;
           Object.values(referenceLineMap.row).forEach(referItem => {

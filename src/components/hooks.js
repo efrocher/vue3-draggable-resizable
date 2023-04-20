@@ -231,12 +231,12 @@ function initDraggableContainer(containerRef, containerProps, limitProps, dragga
         var deltaY = pageY - lstPageY;
         var newLeft = lstX + deltaX;
         var newTop = lstY + deltaY;
-        if (referenceLineMap !== null && (containerProvider && !containerProvider.disabled.value)) {
+        if (referenceLineMap !== null) {
             var widgetSelfLine = {
                 col: [newLeft, newLeft + w.value / 2, newLeft + w.value],
                 row: [newTop, newTop + h.value / 2, newTop + h.value]
             };
-            var matchedLine = {
+            var matchedLine = (containerProvider.disabled.value) ? { row: [], col: [] } : {
                 row: widgetSelfLine.row
                     .map(function (i, index) {
                     var match = null;
