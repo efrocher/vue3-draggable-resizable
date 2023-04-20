@@ -19,6 +19,7 @@ export type GetPositionStore = (excludeId?: string) => PositionStore
 
 export interface ContainerProvider {
   updatePosition: UpdatePosition
+  removePosition: RemovePosition
   getPositionStore: GetPositionStore
   setMatchedLine: SetMatchedLine
   disabled: Ref<boolean>

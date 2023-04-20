@@ -14,7 +14,8 @@ import {
   GetPositionStore,
   ResizingHandle,
   ContainerProvider,
-  SetMatchedLine
+  SetMatchedLine,
+  RemovePosition
 } from './types'
 
 export const ALL_HANDLES: ResizingHandle[] = [
@@ -157,6 +158,7 @@ const VueDraggableResizable = defineComponent({
     if (provideIdentity === IDENTITY) {
       containerProvider = {
         updatePosition: inject<UpdatePosition>('updatePosition')!,
+        removePosition: inject<RemovePosition>('removePosition')!,
         getPositionStore: inject<GetPositionStore>('getPositionStore')!,
         disabled: inject<Ref<boolean>>('disabled')!,
         adsorbParent: inject<Ref<boolean>>('adsorbParent')!,
@@ -232,7 +234,7 @@ const VueDraggableResizable = defineComponent({
       })
     }
   },
-  destroyed() {
+  unmounted() {
     this.containerProvider.removePosition(this.id)
   },
   render() {
