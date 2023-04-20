@@ -235,7 +235,8 @@ const VueDraggableResizable = defineComponent({
     }
   },
   unmounted() {
-    this.containerProvider.removePosition(this.id)
+    if(this.containerProvider)
+      this.containerProvider.removePosition(this.id)
   },
   render() {
     return h(

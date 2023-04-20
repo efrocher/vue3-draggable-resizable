@@ -10,9 +10,11 @@ export interface PositionStore {
     [propName: string]: Position;
 }
 export declare type UpdatePosition = (id: string, position: Position) => void;
+export declare type RemovePosition = (id: string) => void;
 export declare type GetPositionStore = (excludeId?: string) => PositionStore;
 export interface ContainerProvider {
     updatePosition: UpdatePosition;
+    removePosition: RemovePosition;
     getPositionStore: GetPositionStore;
     setMatchedLine: SetMatchedLine;
     disabled: Ref<boolean>;
