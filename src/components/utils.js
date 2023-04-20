@@ -67,8 +67,13 @@ function getReferenceLineMap(containerProvider, parentSize, id) {
     (_a = referenceLine.row).push.apply(_a, containerProvider.adsorbRows);
     (_b = referenceLine.col).push.apply(_b, containerProvider.adsorbCols);
     if (containerProvider.adsorbParent.value) {
-        referenceLine.row.push(0, parentHeight.value, parentHeight.value / 2);
-        referenceLine.col.push(0, parentWidth.value, parentWidth.value / 2);
+        // Defaults only apply when no given values
+        if (referenceLine.row.length == 0) {
+            referenceLine.row.push(0, parentHeight.value, parentHeight.value / 2);
+        }
+        if (referenceLine.col.length == 0) {
+            referenceLine.col.push(0, parentWidth.value, parentWidth.value / 2);
+        }
     }
     var widgetPositionStore = containerProvider.getPositionStore(id);
     Object.values(widgetPositionStore).forEach(function (_a) {
