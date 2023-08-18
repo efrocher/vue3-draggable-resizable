@@ -91,16 +91,26 @@ function initState(props, emit) {
     };
 }
 exports.initState = initState;
-function initParent(containerRef) {
+function initParent(_containerRef) {
     var parentWidth = vue_1.ref(0);
     var parentHeight = vue_1.ref(0);
-    vue_1.onMounted(function () {
+    var containerRef = _containerRef;
+    var updateParentSize = function () {
+        console.log("updateParentSize()");
         if (containerRef.value && containerRef.value.parentElement) {
             var _a = utils_1.getElSize(containerRef.value.parentElement), width = _a.width, height = _a.height;
             parentWidth.value = width;
             parentHeight.value = height;
         }
+    };
+    var resizeObserver = new ResizeObserver(function () { return updateParentSize(); });
+    vue_1.onMounted(function () {
+        if (containerRef.value && containerRef.value.parentElement) {
+            updateParentSize();
+            resizeObserver.observe(containerRef.value.parentElement);
+        }
     });
+    vue_1.onUnmounted(function () { return resizeObserver.disconnect(); });
     return {
         parentWidth: parentWidth,
         parentHeight: parentHeight

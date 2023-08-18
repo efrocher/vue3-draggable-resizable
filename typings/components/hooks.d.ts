@@ -30,7 +30,7 @@ export declare function initState(props: any, emit: any): {
     setTop: (val: number) => number;
     setLeft: (val: number) => number;
 };
-export declare function initParent(containerRef: Ref<HTMLElement | undefined>): {
+export declare function initParent(_containerRef: Ref<HTMLElement | undefined>): {
     parentWidth: Ref<number>;
     parentHeight: Ref<number>;
 };

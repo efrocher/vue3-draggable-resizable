@@ -1317,10 +1317,12 @@ function initState(props, emit) {
     setLeft: val => setLeft(Math.floor(val))
   };
 }
-function initParent(containerRef) {
+function initParent(_containerRef) {
   const parentWidth = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["ref"])(0);
   const parentHeight = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["ref"])(0);
-  Object(external_commonjs_vue_commonjs2_vue_root_Vue_["onMounted"])(() => {
+  const containerRef = _containerRef;
+  const updateParentSize = () => {
+    console.log("updateParentSize()");
     if (containerRef.value && containerRef.value.parentElement) {
       const {
         width,
@@ -1329,7 +1331,15 @@ function initParent(containerRef) {
       parentWidth.value = width;
       parentHeight.value = height;
     }
+  };
+  const resizeObserver = new ResizeObserver(() => updateParentSize());
+  Object(external_commonjs_vue_commonjs2_vue_root_Vue_["onMounted"])(() => {
+    if (containerRef.value && containerRef.value.parentElement) {
+      updateParentSize();
+      resizeObserver.observe(containerRef.value.parentElement);
+    }
   });
+  Object(external_commonjs_vue_commonjs2_vue_root_Vue_["onUnmounted"])(() => resizeObserver.disconnect());
   return {
     parentWidth,
     parentHeight
