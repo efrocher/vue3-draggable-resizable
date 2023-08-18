@@ -103,16 +103,25 @@ export function initState(props: any, emit: any) {
   }
 }
 
-export function initParent(containerRef: Ref<HTMLElement | undefined>) {
+export function initParent(_containerRef: Ref<HTMLElement | undefined>) {
   const parentWidth = ref(0)
   const parentHeight = ref(0)
-  onMounted(() => {
-    if (containerRef.value && containerRef.value.parentElement) {
+  const containerRef = _containerRef
+  const updateParentSize = () => {
+    if(containerRef.value && containerRef.value.parentElement) {
       const { width, height } = getElSize(containerRef.value.parentElement)
       parentWidth.value = width
       parentHeight.value = height
     }
+  }
+  const resizeObserver = new ResizeObserver(() => updateParentSize())
+  onMounted(() => {
+    if (containerRef.value && containerRef.value.parentElement) {
+      updateParentSize()
+      resizeObserver.observe(containerRef.value.parentElement)
+    }
   })
+  onUnmounted(() => resizeObserver.disconnect())
   return {
     parentWidth,
     parentHeight
