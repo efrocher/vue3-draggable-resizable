@@ -96,7 +96,6 @@ function initParent(_containerRef) {
     var parentHeight = vue_1.ref(0);
     var containerRef = _containerRef;
     var updateParentSize = function () {
-        console.log("updateParentSize()");
         if (containerRef.value && containerRef.value.parentElement) {
             var _a = utils_1.getElSize(containerRef.value.parentElement), width = _a.width, height = _a.height;
             parentWidth.value = width;
