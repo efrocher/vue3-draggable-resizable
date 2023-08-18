@@ -1331,7 +1331,6 @@ function initParent(_containerRef) {
   const parentHeight = Object(external_commonjs_vue_commonjs2_vue_root_Vue_["ref"])(0);
   const containerRef = _containerRef;
   const updateParentSize = () => {
-    console.log("updateParentSize()");
     if (containerRef.value && containerRef.value.parentElement) {
       const {
         width,

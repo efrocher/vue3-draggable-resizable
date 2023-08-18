@@ -108,7 +108,6 @@ export function initParent(_containerRef: Ref<HTMLElement | undefined>) {
   const parentHeight = ref(0)
   const containerRef = _containerRef
   const updateParentSize = () => {
-    console.log("updateParentSize()")
     if(containerRef.value && containerRef.value.parentElement) {
       const { width, height } = getElSize(containerRef.value.parentElement)
       parentWidth.value = width
